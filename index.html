@@ -39,7 +39,7 @@
             flex-direction: column;
             text-align: center;
             padding: 100px 20px;
-            background: url('hero-bg.jpeg') no-repeat center center/cover; /* Updated image */
+            background: url('hero-bg.jpeg') no-repeat center center/cover; /* Ensure this path is correct */
             color: #ffffff;
             background-color: #004d40; /* Dark teal */
         }
@@ -67,7 +67,7 @@
             background-color: #004d40;
             color: #ffffff;
         }
-        .statistics, .features, .how-it-is-made, .why-enviro-case, .vision-mission-values {
+        section {
             padding: 50px 20px;
             opacity: 0;
             transform: translateY(100px);
@@ -134,7 +134,6 @@
         .why-enviro-case {
             background-color: #f0f4f8; /* Light grey-blue */
             color: #2e3a41; /* Dark grey-blue */
-            padding: 50px 20px;
         }
         .why-enviro-case h2 {
             font-size: 36px;
@@ -161,7 +160,7 @@
         .vision-mission-values p {
             font-size: 20px;
         }
-        .venn-diagram img {
+        .vision-mission-values img {
             width: 100%;
             border: none; /* Removed border */
         }
@@ -214,7 +213,7 @@
         </div>
     </section>
     <section class="how-it-is-made">
-        <img src="how-it-is-made.png" alt="How it is made image"> <!-- Updated image -->
+        <img src="how-it-is-made.png" alt="How it is made image"> <!-- Replace with actual image -->
         <div>
             <h2>How It Is Made</h2>
             <p>The process starts from transforming agriculture residues into paper pulp for the packaging industry. ‘Eco-Pulping’ is about saving resources and using waste otherwise left to rot or burn and cause emissions. The next step, like traditional, existing methods, is a mechanical process to refine, dewater, clean, and screen material.</p>
@@ -232,25 +231,26 @@
     </section>
     <section class="vision-mission-values">
         <h2>Our Vision, Mission, and Values</h2>
-        <div class="venn-diagram">
-            <img src="venn-diagram.jpg" alt="Venn Diagram"> <!-- Replace with actual image -->
-        </div>
-        <p><strong>Our Mission:</strong> To lead the way in environmentally friendly packaging solutions by turning agricultural waste into eco-friendly boxes that encourage innovation and environmental care.</p>
-        <p><strong>Our Vision:</strong> To lead the packaging sector towards sustainability by creatively utilizing agricultural waste to lessen dependency on conventional materials and to maximize the use of natural resources.</p>
-        <p><strong>Our Values:</strong> Commitment to using sustainable ways, pursuing continuous improvement and innovation in packaging materials, and delivering high-quality and durable packaging materials.</p>
+        <img src="mission_vision.png" alt="Mission and Vision"> <!-- Replace with actual image -->
+        <p><strong>Our Mission:</strong> To lead the way in environmentally friendly packaging solutions by turning agricultural waste into valuable products.</p>
+        <p><strong>Our Vision:</strong> A world where sustainable practices are the norm, and agricultural waste is transformed into valuable resources.</p>
+        <p><strong>Our Values:</strong> Innovation, sustainability, integrity, and community. We strive to make a positive impact on the environment and our community.</p>
     </section>
     <footer>
         <p>&copy; 2024 Enviro Case. All rights reserved.</p>
     </footer>
     <script>
-        // JavaScript for scroll animations
-        document.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.statistics, .features, .how-it-is-made, .why-enviro-case, .vision-mission-values');
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
             sections.forEach(section => {
-                const position = section.getBoundingClientRect().top;
-                if (position < window.innerHeight - 100) {
-                    section.classList.add('visible');
-                }
+                observer.observe(section);
             });
         });
     </script>
