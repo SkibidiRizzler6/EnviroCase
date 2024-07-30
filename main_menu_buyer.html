@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envirocase Buyer Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo-container img {
+            height: 60px;
+            margin-right: 20px;
+        }
+
+        .header .title {
+            font-weight: bold;
+            color: white;
+            font-size: 24px;
+        }
+
+        .header .logout-logo {
+            height: 40px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            width: 220px; /* Adjusted width */
+            background-color: #34495e;
+            color: white;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            bottom: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #2c3e50;
+        }
+
+        .main-content {
+            margin-left: 220px; /* Adjusted margin-left */
+            padding: 30px;
+            padding-top: 100px;
+            flex: 1;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .product h3 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+
+        .product p {
+            color: #777;
+        }
+
+        .product button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product button:hover {
+            background-color: #219150;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            margin: 0;
+            font-size: 32px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .section table, .section th, .section td {
+            border: 1px solid #ddd;
+        }
+
+        .section th, .section td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .section th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .section tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .continue-payment {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .continue-payment a {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        .continue-payment a:hover {
+            background-color: #2980b9;
+        }
+
+        .cart {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            right: 0;
+            top: 80px;
+            width: 300px; /* Adjusted width */
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .cart h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .cart-item button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .cart-item button:hover {
+            background-color: #c0392b;
+        }
+
+        .cart .empty {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <a href="index.html"><img src="logout_logo.jpg" alt="Logout Logo" onclick="logout()"></a>
+            <div class="title">EnviroCase</div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="#order-history">Order History</a>
+        <a href="#track-order">Track Order</a>
+        <a href="#contact-support">Contact Customer Support</a>
+    </div>
+
+    <div class="main-content">
+        <div id="products" class="products">
+            <!-- All 15 products -->
+            <div class="product">
+                <img src="box1.jpg" alt="Box 1">
+                <h3>Recycled Paper Box - Small</h3>
+                <p>Perfect for small items. Eco-friendly and durable. ₹50</p>
+                <button onclick="addToCart('Recycled Paper Box - Small', 50)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box2.jpg" alt="Box 2">
+                <h3>Recycled Paper Box - Medium</h3>
+                <p>Ideal for medium-sized items. Sturdy and sustainable. ₹100</p>
+                <button onclick="addToCart('Recycled Paper Box - Medium', 100)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box3.jpg" alt="Box 3">
+                <h3>Recycled Paper Box - Large</h3>
+                <p>Great for large items. Strong and environmentally friendly. ₹150</p>
+                <button onclick="addToCart('Recycled Paper Box - Large', 150)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box4.jpg" alt="Box 4">
+                <h3>Recycled Paper Box - Extra Large</h3>
+                <p>Perfect for oversized items. Durable and eco-friendly. ₹200</p>
+                <button onclick="addToCart('Recycled Paper Box - Extra Large', 200)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box5.jpg" alt="Box 5">
+                <h3>Recycled Paper Box - Square Small</h3>
+                <p>Compact square box for small items. Eco-friendly. ₹60</p>
+                <button onclick="addToCart('Recycled Paper Box - Square Small', 60)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box6.jpg" alt="Box 6">
+                <h3>Recycled Paper Box - Square Medium</h3>
+                <p>Square box for medium items. Strong and sustainable. ₹110</p>
+                <button onclick="addToCart('Recycled Paper Box - Square Medium', 110)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box7.jpg" alt="Box 7">
+                <h3>Recycled Paper Box - Square Large</h3>
+                <p>Square box for large items. Durable and eco-friendly. ₹160</p>
+                <button onclick="addToCart('Recycled Paper Box - Square Large', 160)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box8.jpg" alt="Box 8">
+                <h3>Recycled Paper Box - Square Extra Large</h3>
+                <p>Ideal for oversized items. Sturdy and sustainable. ₹210</p>
+                <button onclick="addToCart('Recycled Paper Box - Square Extra Large', 210)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box9.jpg" alt="Box 9">
+                <h3>Recycled Paper Box - Tall Small</h3>
+                <p>Tall box for small items. Eco-friendly and strong. ₹70</p>
+                <button onclick="addToCart('Recycled Paper Box - Tall Small', 70)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box10.jpg" alt="Box 10">
+                <h3>Recycled Paper Box - Tall Medium</h3>
+                <p>Tall box for medium items. Sustainable and durable. ₹120</p>
+                <button onclick="addToCart('Recycled Paper Box - Tall Medium', 120)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box11.jpg" alt="Box 11">
+                <h3>Recycled Paper Box - Tall Large</h3>
+                <p>Tall box for large items. Sturdy and eco-friendly. ₹170</p>
+                <button onclick="addToCart('Recycled Paper Box - Tall Large', 170)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box12.jpg" alt="Box 12">
+                <h3>Recycled Paper Box - Tall Extra Large</h3>
+                <p>Great for oversized items. Durable and sustainable. ₹220</p>
+                <button onclick="addToCart('Recycled Paper Box - Tall Extra Large', 220)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box13.jpg" alt="Box 13">
+                <h3>Recycled Paper Box - Wide Small</h3>
+                <p>Wide box for small items. Eco-friendly and strong. ₹80</p>
+                <button onclick="addToCart('Recycled Paper Box - Wide Small', 80)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box14.jpg" alt="Box 14">
+                <h3>Recycled Paper Box - Wide Medium</h3>
+                <p>Wide box for medium items. Durable and sustainable. ₹130</p>
+                <button onclick="addToCart('Recycled Paper Box - Wide Medium', 130)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="box15.jpg" alt="Box 15">
+                <h3>Recycled Paper Box - Wide Large</h3>
+                <p>Wide box for large items. Strong and eco-friendly. ₹180</p>
+                <button onclick="addToCart('Recycled Paper Box - Wide Large', 180)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div id="order-history" class="section">
+            <h3>Order History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Order history items will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="track-order" class="section">
+            <h3>Track Order</h3>
+            <form id="trackOrderForm">
+                <input type="text" id="orderID" placeholder="Order ID" required>
+                <button type="submit" class="button">Track Order</button>
+            </form>
+            <div id="trackOrderResults">
+                <!-- Tracking details will be inserted here -->
+            </div>
+        </div>
+
+        <div id="contact-support" class="section">
+            <h3>Contact Customer Support</h3>
+            <p>If you have any questions or need assistance, please contact our customer support team.</p>
+            <p>Email: support@envirocase.com</p>
+            <p>Phone: +91 9205246028</p>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h3>Shopping Cart</h3>
+        <div id="cart-items">
+            <p class="empty">Your cart is empty.</p>
+        </div>
+        <div class="continue-payment">
+            <a href="payments.html">Continue to Payment</a>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, price) {
+            cart.push({productName, price});
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p class="empty">Your cart is empty.</p>';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <p>${item.productName} - ₹${item.price}</p>
+                    <button onclick="removeFromCart('${item.productName}')">Remove</button>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+        }
+
+        function removeFromCart(productName) {
+            cart = cart.filter(item => item.productName !== productName);
+            updateCart();
+        }
+
+        function logout() {
+            // Clear user session or any related data
+            // Redirect to login page
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('trackOrderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const orderID = document.getElementById('orderID').value;
+            // Add your order tracking logic here
+            alert('Tracking order: ' + orderID);
+        });
+
+        // Add more JavaScript as needed
+    </script>
+</body>
+</html>
