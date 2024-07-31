@@ -52,7 +52,7 @@
         }
 
         .sidebar {
-            width: 220px; /* Adjusted width */
+            width: 220px;
             background-color: #34495e;
             color: white;
             position: fixed;
@@ -78,7 +78,7 @@
         }
 
         .main-content {
-            margin-left: 220px; /* Adjusted margin-left */
+            margin-left: 220px;
             padding: 30px;
             padding-top: 100px;
             flex: 1;
@@ -118,6 +118,11 @@
 
         .product p {
             color: #777;
+            font-weight: bold;
+        }
+
+        .product p span.price {
+            color: red;
         }
 
         .product button {
@@ -202,7 +207,7 @@
             position: fixed;
             right: 0;
             top: 80px;
-            width: 300px; /* Adjusted width */
+            width: 300px;
             bottom: 0;
             overflow-y: auto;
         }
@@ -244,6 +249,23 @@
             color: #777;
             font-style: italic;
         }
+
+        .cart.minimized {
+            transform: translateX(300px);
+        }
+
+        .cart-toggle-btn {
+            position: fixed;
+            right: 320px;
+            top: 100px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1001;
+        }
     </style>
 </head>
 <body>
@@ -261,97 +283,99 @@
     </div>
 
     <div class="main-content">
+        <button class="cart-toggle-btn" onclick="toggleCart()">☰ </button>
         <div id="products" class="products">
-            <!-- All 15 products -->
+            <!-- Product items here -->
+            <!-- Add the remaining 15 products here -->
             <div class="product">
                 <img src="box1.jpg" alt="Box 1">
                 <h3>Recycled Paper Box - Small</h3>
-                <p>Perfect for small items. Eco-friendly and durable. ₹50</p>
+                <p>Perfect for small items. Eco-friendly and durable. <span class="price">₹50</span></p>
                 <button onclick="addToCart('Recycled Paper Box - Small', 50)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box2.jpg" alt="Box 2">
+                <img src="box2.jpeg" alt="Box 2">
                 <h3>Recycled Paper Box - Medium</h3>
-                <p>Ideal for medium-sized items. Sturdy and sustainable. ₹100</p>
-                <button onclick="addToCart('Recycled Paper Box - Medium', 100)">Add to Cart</button>
+                <p>Ideal for medium-sized items. Strong and sustainable. <span class="price">₹75</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Medium', 75)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box3.jpg" alt="Box 3">
+                <img src="box3.jpeg" alt="Box 3">
                 <h3>Recycled Paper Box - Large</h3>
-                <p>Great for large items. Strong and environmentally friendly. ₹150</p>
-                <button onclick="addToCart('Recycled Paper Box - Large', 150)">Add to Cart</button>
+                <p>Great for larger items. High quality and eco-friendly. <span class="price">₹100</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Large', 100)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box4.jpg" alt="Box 4">
+                <img src="box4.jpeg" alt="Box 4">
                 <h3>Recycled Paper Box - Extra Large</h3>
-                <p>Perfect for oversized items. Durable and eco-friendly. ₹200</p>
-                <button onclick="addToCart('Recycled Paper Box - Extra Large', 200)">Add to Cart</button>
+                <p>Perfect for bulky items. Made from recycled materials. <span class="price">₹125</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Extra Large', 125)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box5.jpg" alt="Box 5">
-                <h3>Recycled Paper Box - Square Small</h3>
-                <p>Compact square box for small items. Eco-friendly. ₹60</p>
-                <button onclick="addToCart('Recycled Paper Box - Square Small', 60)">Add to Cart</button>
+                <img src="box6.jpg" alt="Box 5">
+                <h3>Recycled Paper Box - Flat Pack</h3>
+                <p>Convenient flat pack design. Great for shipping. <span class="price">₹40</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Flat Pack', 40)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box6.jpg" alt="Box 6">
-                <h3>Recycled Paper Box - Square Medium</h3>
-                <p>Square box for medium items. Strong and sustainable. ₹110</p>
-                <button onclick="addToCart('Recycled Paper Box - Square Medium', 110)">Add to Cart</button>
+                <img src="box5.jpeg" alt="Box 6">
+                <h3>Recycled Paper Box - Gift Pack</h3>
+                <p>Elegant gift pack design. Perfect for presents. <span class="price">₹85</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Gift Pack', 85)">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="box7.jpg" alt="Box 7">
-                <h3>Recycled Paper Box - Square Large</h3>
-                <p>Square box for large items. Durable and eco-friendly. ₹160</p>
-                <button onclick="addToCart('Recycled Paper Box - Square Large', 160)">Add to Cart</button>
+                <h3>Recycled Paper Box - Handle Pack</h3>
+                <p>Includes handle for easy carrying. Durable and eco-friendly. <span class="price">₹95</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Handle Pack', 95)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box8.jpg" alt="Box 8">
-                <h3>Recycled Paper Box - Square Extra Large</h3>
-                <p>Ideal for oversized items. Sturdy and sustainable. ₹210</p>
-                <button onclick="addToCart('Recycled Paper Box - Square Extra Large', 210)">Add to Cart</button>
+                <img src="box8.jpeg" alt="Box 8">
+                <h3>Recycled Paper Box - Wine Pack</h3>
+                <p>Special design for wine bottles. Secure and stylish. <span class="price">₹110</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Wine Pack', 110)">Add to Cart</button>
             </div>
             <div class="product">
                 <img src="box9.jpg" alt="Box 9">
-                <h3>Recycled Paper Box - Tall Small</h3>
-                <p>Tall box for small items. Eco-friendly and strong. ₹70</p>
-                <button onclick="addToCart('Recycled Paper Box - Tall Small', 70)">Add to Cart</button>
+                <h3>Recycled Paper Box - Bakery Pack</h3>
+                <p>Ideal for bakery items. Fresh and eco-friendly. <span class="price">₹65</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Bakery Pack', 65)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box10.jpg" alt="Box 10">
-                <h3>Recycled Paper Box - Tall Medium</h3>
-                <p>Tall box for medium items. Sustainable and durable. ₹120</p>
-                <button onclick="addToCart('Recycled Paper Box - Tall Medium', 120)">Add to Cart</button>
+                <img src="box10.jpeg" alt="Box 10">
+                <h3>Recycled Paper Box - Document Pack</h3>
+                <p>For storing documents safely. Recycled and robust. <span class="price">₹55</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Document Pack', 55)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box11.jpg" alt="Box 11">
-                <h3>Recycled Paper Box - Tall Large</h3>
-                <p>Tall box for large items. Sturdy and eco-friendly. ₹170</p>
-                <button onclick="addToCart('Recycled Paper Box - Tall Large', 170)">Add to Cart</button>
+                <img src="box11.jpeg" alt="Box 11">
+                <h3>Recycled Paper Box - Jewelry Pack</h3>
+                <p>Perfect for jewelry items. Elegant and secure. <span class="price">₹70</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Jewelry Pack', 70)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box12.jpg" alt="Box 12">
-                <h3>Recycled Paper Box - Tall Extra Large</h3>
-                <p>Great for oversized items. Durable and sustainable. ₹220</p>
-                <button onclick="addToCart('Recycled Paper Box - Tall Extra Large', 220)">Add to Cart</button>
+                <img src="box12.jpeg" alt="Box 12">
+                <h3>Recycled Paper Box - Shoe Pack</h3>
+                <p>Designed for shoes. Strong and eco-friendly. <span class="price">₹90</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Shoe Pack', 90)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box13.jpg" alt="Box 13">
-                <h3>Recycled Paper Box - Wide Small</h3>
-                <p>Wide box for small items. Eco-friendly and strong. ₹80</p>
-                <button onclick="addToCart('Recycled Paper Box - Wide Small', 80)">Add to Cart</button>
+                <img src="box13.jpeg" alt="Box 13">
+                <h3>Recycled Paper Box - Electronics Pack</h3>
+                <p>For electronic items. Safe and sustainable. <span class="price">₹120</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Electronics Pack', 120)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box14.jpg" alt="Box 14">
-                <h3>Recycled Paper Box - Wide Medium</h3>
-                <p>Wide box for medium items. Durable and sustainable. ₹130</p>
-                <button onclick="addToCart('Recycled Paper Box - Wide Medium', 130)">Add to Cart</button>
+                <img src="box14.jpeg" alt="Box 14">
+                <h3>Recycled Paper Box - Art Pack</h3>
+                <p>Designed for art supplies. Sturdy and green. <span class="price">₹80</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Art Pack', 80)">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="box15.jpg" alt="Box 15">
-                <h3>Recycled Paper Box - Wide Large</h3>
-                <p>Wide box for large items. Strong and eco-friendly. ₹180</p>
-                <button onclick="addToCart('Recycled Paper Box - Wide Large', 180)">Add to Cart</button>
+                <img src="box15.jpeg" alt="Box 15">
+                <h3>Recycled Paper Box - Custom Pack</h3>
+                <p>Customizable design for various uses. Recycled materials. <span class="price">₹150</span></p>
+                <button onclick="addToCart('Recycled Paper Box - Custom Pack', 150)">Add to Cart</button>
             </div>
         </div>
 
@@ -361,92 +385,90 @@
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Date</th>
+                        <th>Order Date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Order history items will be inserted here -->
+                    <!-- Populate with order history data -->
+                    <tr>
+                        <td>12345</td>
+                        <td>2024-07-15</td>
+                        <td>Shipped</td>
+                    </tr>
+                    <tr>
+                        <td>12346</td>
+                        <td>2024-07-16</td>
+                        <td>Delivered</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div id="track-order" class="section">
-            <h3>Track Order</h3>
-            <form id="trackOrderForm">
-                <input type="text" id="orderID" placeholder="Order ID" required>
+            <h3>Track Your Order</h3>
+            <form id="trackForm">
+                <input type="text" id="orderId" placeholder="Enter Order ID" required>
                 <button type="submit" class="button">Track Order</button>
             </form>
-            <div id="trackOrderResults">
-                <!-- Tracking details will be inserted here -->
-            </div>
+            <div id="orderStatus"></div>
         </div>
 
         <div id="contact-support" class="section">
             <h3>Contact Customer Support</h3>
-            <p>If you have any questions or need assistance, please contact our customer support team.</p>
-            <p>Email: support@envirocase.com</p>
-            <p>Phone: +91 9205246028</p>
+            <h4>Phone no:+91 9205246028</h4>
+			<h4>Email Address:support@envirocase.in</h4>
         </div>
+
     </div>
 
-    <div class="cart">
+    <div class="cart" id="cart">
         <h3>Shopping Cart</h3>
-        <div id="cart-items">
-            <p class="empty">Your cart is empty.</p>
-        </div>
+        <div id="cartItems" class="empty">Your cart is empty.</div>
         <div class="continue-payment">
-            <a href="payments.html">Continue to Payment</a>
+            <a href="payment.html">Continue to Payment</a>
         </div>
     </div>
 
     <script>
-        let cart = [];
+        const cart = [];
+        const cartContainer = document.getElementById('cartItems');
 
-        function addToCart(productName, price) {
-            cart.push({productName, price});
-            updateCart();
+        function addToCart(itemName, itemPrice) {
+            cart.push({ name: itemName, price: itemPrice });
+            updateCartDisplay();
         }
 
-        function updateCart() {
-            const cartItemsDiv = document.getElementById('cart-items');
-            cartItemsDiv.innerHTML = '';
-
+        function updateCartDisplay() {
             if (cart.length === 0) {
-                cartItemsDiv.innerHTML = '<p class="empty">Your cart is empty.</p>';
+                cartContainer.innerHTML = '<p class="empty">Your cart is empty.</p>';
                 return;
             }
-
+            cartContainer.innerHTML = '';
             cart.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <p>${item.productName} - ₹${item.price}</p>
-                    <button onclick="removeFromCart('${item.productName}')">Remove</button>
-                `;
-                cartItemsDiv.appendChild(itemDiv);
+                const div = document.createElement('div');
+                div.classList.add('cart-item');
+                div.innerHTML = `<p>${item.name} - ₹${item.price}</p><button onclick="removeFromCart('${item.name}')">Remove</button>`;
+                cartContainer.appendChild(div);
             });
         }
 
-        function removeFromCart(productName) {
-            cart = cart.filter(item => item.productName !== productName);
-            updateCart();
+        function removeFromCart(itemName) {
+            const index = cart.findIndex(item => item.name === itemName);
+            if (index !== -1) {
+                cart.splice(index, 1);
+                updateCartDisplay();
+            }
+        }
+
+        function toggleCart() {
+            const cartElement = document.getElementById('cart');
+            cartElement.classList.toggle('minimized');
         }
 
         function logout() {
-            // Clear user session or any related data
-            // Redirect to login page
-            window.location.href = 'index.html';
+            // Implement logout functionality here
         }
-
-        document.getElementById('trackOrderForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const orderID = document.getElementById('orderID').value;
-            // Add your order tracking logic here
-            alert('Tracking order: ' + orderID);
-        });
-
-        // Add more JavaScript as needed
     </script>
 </body>
 </html>
