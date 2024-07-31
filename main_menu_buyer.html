@@ -146,6 +146,22 @@
             margin-bottom: 30px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
+	    
+	.header .logout-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .header .logout-button:hover {
+            background-color: #c0392b;
+        }
+
 
         .section h3 {
             margin: 0;
@@ -273,7 +289,8 @@
         <div class="logo-container">
             <a href="index.html"><img src="logout_logo.jpg" alt="Logout Logo" onclick="logout()"></a>
             <div class="title">EnviroCase</div>
-        </div>
+	</div>
+	<button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <div class="sidebar">
