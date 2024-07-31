@@ -484,8 +484,18 @@
         }
 
         function logout() {
-            // Implement logout functionality here
+            // Clear user session or any related data
+            // Redirect to login page
+            window.location.href = 'index.html';
         }
+
+        document.getElementById('trackOrderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const orderID = document.getElementById('orderID').value;
+            // Add your order tracking logic here
+            alert('Tracking order: ' + orderID);
+        });
+        
     </script>
 </body>
 </html>
