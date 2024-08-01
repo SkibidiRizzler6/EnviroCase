@@ -27,7 +27,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-			box-sizing: border-box;
+            box-sizing: border-box;
         }
 
         .logo-container {
@@ -46,23 +46,22 @@
         }
 
         .logout-button {
-			background-color: #e74c3c;
-			color: white;
-			border: none;
-			padding: 6px 30px; 
-			border-radius: 5px;
-			cursor: pointer;
-			font-size: 14px; 
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: background-color 0.3s;
-		}
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
 
-		.logout-button:hover {
-			background-color: #c0392b;
-		}
-
+        .logout-button:hover {
+            background-color: #c0392b;
+        }
 
         nav {
             background-color: #34495e;
@@ -191,7 +190,6 @@
             font-size: 16px;
             color: #7f8c8d;
         }
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -289,7 +287,7 @@
                     <input type="text" id="paymentOrderID" placeholder="Order ID" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="paymentAmount" placeholder="Amount" required>
+                    <input type="number" id="paymentAmount" placeholder="Amount" required>
                 </div>
                 <button type="submit" class="button">Submit Payment</button>
             </form>
@@ -328,6 +326,37 @@
             </div>
         </div>
 
+        <!-- Profile -->
+        <div id="profile" class="section">
+            <h2>Profile</h2>
+            <form id="profileForm">
+                <div class="form-group">
+                    <input type="text" id="profileName" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="profileEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="profilePassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="button">Update Profile</button>
+            </form>
+        </div>
+
+        <!-- Settings -->
+        <div id="settings" class="section">
+            <h2>Settings</h2>
+            <form id="settingsForm">
+                <div class="form-group">
+                    <input type="text" id="settingsCompanyName" placeholder="Company Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="settingsCompanyAddress" placeholder="Company Address" required>
+                </div>
+                <button type="submit" class="button">Update Settings</button>
+            </form>
+        </div>
+
         <!-- Notifications -->
         <div class="notifications">
             <h3>Notifications</h3>
@@ -335,10 +364,9 @@
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function logout() {
-            window.location.href = 'index.html'; // Replace with actual logout URL
+            window.location.href = 'logout.html'; // Replace with actual logout URL
         }
 
         // Example charts initialization
@@ -384,6 +412,100 @@
                     }
                 }
             }
+        });
+
+        // Handle inventory form submission
+        document.getElementById('inventoryForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const itemName = document.getElementById('itemName').value;
+            const itemQuantity = document.getElementById('itemQuantity').value;
+
+            const inventoryList = document.getElementById('inventoryList').getElementsByTagName('tbody')[0];
+            const newRow = inventoryList.insertRow();
+
+            const itemNameCell = newRow.insertCell(0);
+            const itemQuantityCell = newRow.insertCell(1);
+
+            itemNameCell.textContent = itemName;
+            itemQuantityCell.textContent = itemQuantity;
+
+            document.getElementById('inventoryForm').reset();
+        });
+
+        // Handle order form submission
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const orderID = document.getElementById('orderID').value;
+            const orderStatus = document.getElementById('orderStatus').value;
+
+            const orderList = document.getElementById('orderList').getElementsByTagName('tbody')[0];
+            const newRow = orderList.insertRow();
+
+            const orderIDCell = newRow.insertCell(0);
+            const orderStatusCell = newRow.insertCell(1);
+
+            orderIDCell.textContent = orderID;
+            orderStatusCell.textContent = orderStatus;
+
+            document.getElementById('orderForm').reset();
+        });
+
+        // Handle payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const paymentOrderID = document.getElementById('paymentOrderID').value;
+            const paymentAmount = document.getElementById('paymentAmount').value;
+
+            const paymentList = document.getElementById('paymentList').getElementsByTagName('tbody')[0];
+            const newRow = paymentList.insertRow();
+
+            const transactionIDCell = newRow.insertCell(0);
+            const paymentOrderIDCell = newRow.insertCell(1);
+            const paymentAmountCell = newRow.insertCell(2);
+            const paymentDateCell = newRow.insertCell(3);
+
+            transactionIDCell.textContent = 'T' + Math.floor(Math.random() * 1000000); // Example transaction ID
+            paymentOrderIDCell.textContent = paymentOrderID;
+            paymentAmountCell.textContent = paymentAmount;
+            paymentDateCell.textContent = new Date().toLocaleDateString();
+
+            document.getElementById('paymentForm').reset();
+        });
+
+        // Handle track order form submission
+        document.getElementById('trackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const trackOrderID = document.getElementById('trackOrderID').value;
+
+            const trackResults = document.getElementById('trackResults');
+            trackResults.textContent = 'Order ' + trackOrderID + ' is currently in transit.'; // Example tracking result
+
+            document.getElementById('trackForm').reset();
+        });
+
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const profileName = document.getElementById('profileName').value;
+            const profileEmail = document.getElementById('profileEmail').value;
+            const profilePassword = document.getElementById('profilePassword').value;
+
+            // Implement profile update logic here
+
+            alert('Profile updated successfully!');
+            document.getElementById('profileForm').reset();
+        });
+
+        // Handle settings form submission
+        document.getElementById('settingsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const settingsCompanyName = document.getElementById('settingsCompanyName').value;
+            const settingsCompanyAddress = document.getElementById('settingsCompanyAddress').value;
+
+            // Implement settings update logic here
+
+            alert('Settings updated successfully!');
+            document.getElementById('settingsForm').reset();
         });
     </script>
 </body>
