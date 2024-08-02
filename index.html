@@ -15,6 +15,7 @@
             color: #2e3a41; /* Dark grey-blue */
             overflow-x: hidden;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -22,16 +23,29 @@
             padding: 20px 50px;
             background-color: #004d40; /* Dark teal */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+			box-sizing: border-box
         }
-        header a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-        }
+
         header img {
             height: 50px;
             width: auto;
         }
+
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 20px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
         .hero-section {
             display: flex;
             justify-content: center;
@@ -42,17 +56,23 @@
             background: url('hero-bg.jpeg') no-repeat center center/cover; /* Ensure this path is correct */
             color: #ffffff;
             background-color: #004d40; /* Dark teal */
+            height: 100vh;
         }
+
         .hero-section h1 {
             font-size: 48px;
             margin: 0;
             animation: fadeIn 2s;
+            font-weight: 700;
         }
+
         .hero-section p {
             font-size: 24px;
             margin: 20px 0;
             animation: fadeIn 2s;
+            font-weight: 400;
         }
+
         .hero-section button {
             padding: 10px 20px;
             font-size: 18px;
@@ -61,109 +81,213 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         .hero-section button:hover {
             background-color: #004d40;
             color: #ffffff;
+            transform: scale(1.05);
         }
+
         section {
             padding: 50px 20px;
             opacity: 0;
             transform: translateY(100px);
             transition: all 1s;
         }
+
         .statistics {
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #e0f7fa; /* Light cyan */
+            padding: 50px 20px;
         }
+
         .statistics div {
             text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, background-color 0.3s;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .statistics div:hover {
+            transform: scale(1.05);
+            background-color: #b2ebf2; /* Lighter cyan */
+        }
+
         .statistics h3 {
             font-size: 36px;
             margin: 0;
             color: #004d40; /* Dark teal */
+            font-weight: 700;
         }
+
         .statistics p {
             font-size: 24px;
             margin: 10px 0 0 0;
             color: #004d40; /* Dark teal */
+            font-weight: 400;
         }
+
         .features {
             display: flex;
             align-items: center;
             background-color: #ffffff; /* White */
+            padding: 50px 20px;
+            border-bottom: 1px solid #e0e0e0;
         }
+
         .features img {
             width: 50%;
-            border: none; /* Removed border */
-            box-shadow: none; /* Removed shadow */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .features div {
             width: 50%;
             padding-left: 20px;
             text-align: left;
         }
+
         .features h2 {
             font-size: 36px;
             margin-bottom: 20px;
             color: #004d40; /* Dark teal */
+            font-weight: 700;
         }
+
         .features p {
             font-size: 20px;
             color: #2e3a41; /* Dark grey-blue */
+            font-weight: 400;
         }
+
         .how-it-is-made {
             display: flex;
             align-items: center;
             background-color: #424242; /* Dark grey */
             color: #ffffff;
+            padding: 50px 20px;
         }
+
         .how-it-is-made img {
             width: 50%;
             margin-right: 20px;
-            border: none; /* Removed border */
-            box-shadow: none; /* Removed shadow */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .how-it-is-made div {
             width: 50%;
             text-align: left;
         }
+
+        .how-it-is-made h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .how-it-is-made p {
+            font-size: 20px;
+            font-weight: 400;
+        }
+
         .why-enviro-case {
             background-color: #f0f4f8; /* Light grey-blue */
             color: #2e3a41; /* Dark grey-blue */
+            padding: 50px 20px;
         }
+
         .why-enviro-case h2 {
             font-size: 36px;
             margin-bottom: 20px;
             color: #004d40; /* Dark teal */
+            font-weight: 700;
         }
+
         .why-enviro-case ul {
             list-style-type: none;
             padding: 0;
         }
+
         .why-enviro-case li {
             font-size: 20px;
             margin: 10px 0;
+            font-weight: 400;
         }
+
         .vision-mission-values {
             background-color: #e0f7fa; /* Light cyan */
             color: #2e3a41; /* Dark grey-blue */
+            padding: 50px 20px;
         }
+
         .vision-mission-values h2 {
             font-size: 36px;
             margin-bottom: 20px;
             color: #004d40; /* Dark teal */
+            font-weight: 700;
         }
+
         .vision-mission-values p {
             font-size: 20px;
+            font-weight: 400;
         }
+
         .vision-mission-values img {
             width: 100%;
-            border: none; /* Removed border */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .testimonials {
+            background-color: #ffffff; /* White */
+            padding: 50px 20px;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #004d40; /* Dark teal */
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .testimonial {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.02);
+            background-color: #e0e0e0;
+        }
+
+        .testimonial p {
+            font-size: 18px;
+            color: #2e3a41; /* Dark grey-blue */
+            font-weight: 400;
+        }
+
+        .testimonial span {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #004d40; /* Dark teal */
+            font-weight: 400;
+        }
+
         footer {
             padding: 20px;
             text-align: center;
@@ -171,10 +295,22 @@
             color: #ffffff;
             font-size: 16px;
         }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
         .visible {
             opacity: 1;
             transform: translateY(0);
@@ -191,7 +327,7 @@
         <p>Connecting farmers and manufacturers to create cost-effective, eco-friendly packaging.</p>
         <button>Learn More</button>
     </section>
-    <section class="statistics">
+    <section class="statistics visible">
         <div>
             <h3>10,000+</h3>
             <p>Happy Farmers</p>
@@ -205,21 +341,21 @@
             <p>Eco-friendly Boxes Produced</p>
         </div>
     </section>
-    <section class="features">
+    <section class="features visible">
         <img src="features.jpg" alt="Features image"> <!-- Replace with actual image -->
         <div>
             <h2>Our Features</h2>
             <p>We create a direct link between farmers and manufacturers, cutting costs and promoting sustainability. Our eco-friendly packaging solutions are made from agricultural waste, turning waste into valuable resources. We also provide an additional revenue stream for farmers.</p>
         </div>
     </section>
-    <section class="how-it-is-made">
+    <section class="how-it-is-made visible">
         <img src="how-it-is-made.png" alt="How it is made image"> <!-- Replace with actual image -->
         <div>
             <h2>How It Is Made</h2>
             <p>The process starts from transforming agriculture residues into paper pulp for the packaging industry. ‘Eco-Pulping’ is about saving resources and using waste otherwise left to rot or burn and cause emissions. The next step, like traditional, existing methods, is a mechanical process to refine, dewater, clean, and screen material.</p>
         </div>
     </section>
-    <section class="why-enviro-case">
+    <section class="why-enviro-case visible">
         <h2>Why Enviro Case</h2>
         <p>Enviro Case is dedicated to providing sustainable packaging solutions by transforming agricultural waste into high-quality, eco-friendly packaging. We are committed to innovation, sustainability, and delivering value to both farmers and manufacturers.</p>
         <ul>
@@ -229,15 +365,20 @@
             <li>High-quality and durable packaging products</li>
         </ul>
     </section>
-    <section class="vision-mission-values">
-        <h2>Our Vision, Mission, and Values</h2>
-        <img src="mission_vision.png" alt="Mission and Vision"> <!-- Replace with actual image -->
-        <p><strong>Our Mission:</strong> To lead the way in environmentally friendly packaging solutions by turning agricultural waste into valuable products.</p>
-        <p><strong>Our Vision:</strong> A world where sustainable practices are the norm, and agricultural waste is transformed into valuable resources.</p>
-        <p><strong>Our Values:</strong> Innovation, sustainability, integrity, and community. We strive to make a positive impact on the environment and our community.</p>
+    <section class="testimonials visible">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial">
+            <p>"Enviro Case has transformed our packaging process and helped us become more sustainable. The quality is exceptional and the team is very supportive."</p>
+            <span>- Raj Patel, Farmer</span>
+        </div>
+        <div class="testimonial">
+            <p>"Partnering with Enviro Case has significantly reduced our costs and increased our commitment to environmental responsibility. Highly recommended!"</p>
+            <span>- Aisha Khan, Manufacturer</span>
+        </div>
     </section>
     <footer>
         <p>&copy; 2024 Enviro Case. All rights reserved.</p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
