@@ -22,12 +22,12 @@
             padding: 20px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-	    box-sizing: border-box;
+            z-index: 100;
+            box-sizing: border-box;
+            justify-content: space-between;
         }
 
         .header .logo-container {
@@ -38,6 +38,7 @@
         .header .logo-container img {
             height: 60px;
             margin-right: 20px;
+            cursor: pointer;
         }
 
         .header .title {
@@ -46,18 +47,84 @@
             font-size: 24px;
         }
 
-        .header .logout-logo {
-            height: 40px;
-            margin-left: 20px;
+        .header .logout-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px; /* Space between cart and logout button */
+        }
+
+        .header .logout-button:hover {
+            background-color: #c0392b;
+        }
+
+        .header .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            position: relative;
+        }
+
+        .cart-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 10px;
+            border-radius: 4px;
+            z-index: 2000;
+        }
+
+        .cart-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .cart-menu .empty {
+            text-align: center;
+            color: #777;
+        }
+
+        .cart-menu .checkout-button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .cart-menu .checkout-button:hover {
+            background-color: #219150;
         }
 
         .sidebar {
-            width: 220px;
+            width: 250px;
             background-color: #34495e;
             color: white;
             position: fixed;
-            top: 80px;
+            top: 100px;
             left: 0;
             bottom: 0;
             padding-top: 20px;
@@ -72,14 +139,21 @@
             display: block;
             font-size: 18px;
             transition: background-color 0.3s;
+            border-radius: 4px;
+            margin: 5px 0;
+            position: relative;
         }
 
         .sidebar a:hover {
             background-color: #2c3e50;
         }
 
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
         .main-content {
-            margin-left: 220px;
+            margin-left: 250px;
             padding: 30px;
             padding-top: 100px;
             flex: 1;
@@ -119,11 +193,6 @@
 
         .product p {
             color: #777;
-            font-weight: bold;
-        }
-
-        .product p span.price {
-            color: red;
         }
 
         .product button {
@@ -147,22 +216,6 @@
             margin-bottom: 30px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
-	    
-	.header .logout-button {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .header .logout-button:hover {
-            background-color: #c0392b;
-        }
-
 
         .section h3 {
             margin: 0;
@@ -196,116 +249,95 @@
             background-color: #f9f9f9;
         }
 
-        .continue-payment {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .continue-payment a {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 18px;
-        }
-
-        .continue-payment a:hover {
+        .button {
             background-color: #2980b9;
-        }
-
-        .cart {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            right: 0;
-            top: 80px;
-            width: 300px;
-            bottom: 0;
-            overflow-y: auto;
-        }
-
-        .cart h3 {
-            margin: 0;
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .cart-item p {
-            margin: 0;
-        }
-
-        .cart-item button {
-            background-color: #e74c3c;
             color: white;
             border: none;
+            padding: 10px 20px;
             border-radius: 4px;
-            padding: 5px 10px;
             cursor: pointer;
+            font-size: 16px;
         }
 
-        .cart-item button:hover {
-            background-color: #c0392b;
+        .button:hover {
+            background-color: #1c6280;
         }
 
-        .cart .empty {
-            text-align: center;
-            color: #777;
-            font-style: italic;
+        .track-order-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .cart.minimized {
-            transform: translateX(300px);
-        }
-
-        .cart-toggle-btn {
-            position: fixed;
-            right: 320px;
-            top: 100px;
-            background-color: #3498db;
-            color: white;
-            border: none;
+        .track-order-form input {
             padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 1001;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .track-order-form button {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .product {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product {
+                width: 100%;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <a href="index.html"><img src="logout_logo.jpg" alt="Logout Logo" onclick="logout()"></a>
+            <img src="light_logo.jpg" alt="Envirocase Logo" onclick="logout()">
             <div class="title">EnviroCase</div>
-	</div>
-	<button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-shopping-cart cart-icon" onclick="toggleCartMenu()"></i>
+            <button class="logout-button" onclick="logout()">Logout</button>
+            <div id="cartMenu" class="cart-menu">
+                <ul id="cartItems">
+                    <li class="empty">Your cart is empty</li>
+                </ul>
+                <button class="checkout-button" onclick="proceedToCheckout()">Checkout</button>
+            </div>
+        </div>
     </div>
 
     <div class="sidebar">
-        <a href="#order-history">Order History</a>
-        <a href="#track-order">Track Order</a>
-        <a href="#contact-support">Contact Customer Support</a>
+        <a href="order-history.html"><i class="fas fa-history"></i> Order History</a>
+        <a href="customer-support.html"><i class="fas fa-headset"></i> Customer Support</a>
+        <a href="track-order.html"><i class="fas fa-truck"></i> Track Order</a>
     </div>
 
     <div class="main-content">
-        <button class="cart-toggle-btn" onclick="toggleCart()">☰ </button>
-        <div id="products" class="products">
-            <!-- Product items here -->
-            <!-- Add the remaining 15 products here -->
-            <div class="product">
+        <div class="section">
+            <h3>Products</h3>
+            <div class="products">
+                 <div class="product">
                 <img src="box1.jpg" alt="Box 1">
                 <h3>Recycled Packaging Box - Small</h3>
                 <p>Perfect for small items. Eco-friendly and durable. <span class="price">₹50</span></p>
@@ -394,109 +426,133 @@
                 <h3>Recycled Packaging Box - Custom Pack</h3>
                 <p>Customizable design for various uses. Recycled materials. <span class="price">₹150</span></p>
                 <button onclick="addToCart('Recycled Packaging Box - Custom Pack', 150)">Add to Cart</button>
+                <!-- Repeat for other products -->
             </div>
         </div>
-
-        <div id="order-history" class="section">
+		<div id="order-history" class="section">
             <h3>Order History</h3>
             <table>
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Order Date</th>
+                        <th>Date</th>
                         <th>Status</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Populate with order history data -->
                     <tr>
-                        <td>12345</td>
-                        <td>2024-07-15</td>
-                        <td>Shipped</td>
+                        <td>ORD12345</td>
+                        <td>2024-07-01</td>
+                        <td>Delivered</td>
+                        <td>₹500</td>
                     </tr>
                     <tr>
-                        <td>12346</td>
-                        <td>2024-07-16</td>
+                        <td>ORD12346</td>
+                        <td>2024-07-15</td>
+                        <td>Shipped</td>
+                        <td>₹700</td>
+                    </tr>
+                    <tr>
+                        <td>ORD12347</td>
+                        <td>2024-07-20</td>
+                        <td>Pending</td>
+                        <td>₹300</td>
+                    </tr>
+                    <tr>
+                        <td>ORD12348</td>
+                        <td>2024-07-25</td>
                         <td>Delivered</td>
+                        <td>₹450</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div id="track-order" class="section">
-            <h3>Track Your Order</h3>
-            <form id="trackForm">
-                <input type="text" id="orderId" placeholder="Enter Order ID" required>
-                <button type="submit" class="button">Track Order</button>
-            </form>
-            <div id="orderStatus"></div>
+            <div id="track-order" class="section">
+				<h3>Track Order</h3>
+				<form id="trackOrderForm" class="track-order-form" onsubmit="trackOrder(event)">
+				<input type="text" id="orderID" placeholder="Order ID" required>
+				<button type="submit" class="button">Track Order</button>
+				</form>
+				<div id="trackOrderResults">
+        
+			</div>
         </div>
 
         <div id="contact-support" class="section">
             <h3>Contact Customer Support</h3>
-            <h4>Phone no:+91 9205246028</h4>
-			<h4>Email Address:support@envirocase.in</h4>
+            <p>If you have any questions or need assistance, please contact our customer support team.</p>
+            <p>Email: <a href="mailto:support@envirocase.com">support@envirocase.com</a></p>
+            <p>Phone: <a href="tel:+919205246028">+91 9205246028</a></p>
         </div>
 
-    </div>
-
-    <div class="cart" id="cart">
-        <h3>Shopping Cart</h3>
-        <div id="cartItems" class="empty">Your cart is empty.</div>
-        <div class="continue-payment">
-            <a href="payments.html">Continue to Payment</a>
-        </div>
+        
     </div>
 
     <script>
-        const cart = [];
-        const cartContainer = document.getElementById('cartItems');
+        let cart = [];
 
-        function addToCart(itemName, itemPrice) {
-            cart.push({ name: itemName, price: itemPrice });
-            updateCartDisplay();
+        function toggleCartMenu() {
+            const cartMenu = document.getElementById('cartMenu');
+            cartMenu.style.display = (cartMenu.style.display === 'block') ? 'none' : 'block';
         }
 
-        function updateCartDisplay() {
+        function addToCart(productName, price) {
+            // Check if the product is already in the cart
+            const existingProduct = cart.find(item => item.name === productName);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ name: productName, price: price, quantity: 1 });
+            }
+            updateCartMenu();
+        }
+
+        function updateCartMenu() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = ''; // Clear existing items
+
             if (cart.length === 0) {
-                cartContainer.innerHTML = '<p class="empty">Your cart is empty.</p>';
-                return;
+                cartItems.innerHTML = '<li class="empty">Your cart is empty</li>';
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name} x${item.quantity} - ₹${item.price * item.quantity}`;
+                    cartItems.appendChild(li);
+                });
             }
-            cartContainer.innerHTML = '';
-            cart.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('cart-item');
-                div.innerHTML = `<p>${item.name} - ₹${item.price}</p><button onclick="removeFromCart('${item.name}')">Remove</button>`;
-                cartContainer.appendChild(div);
-            });
-        }
-
-        function removeFromCart(itemName) {
-            const index = cart.findIndex(item => item.name === itemName);
-            if (index !== -1) {
-                cart.splice(index, 1);
-                updateCartDisplay();
-            }
-        }
-
-        function toggleCart() {
-            const cartElement = document.getElementById('cart');
-            cartElement.classList.toggle('minimized');
         }
 
         function logout() {
-            // Clear user session or any related data
-            // Redirect to login page
             window.location.href = 'index.html';
         }
 
-        document.getElementById('trackOrderForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const orderID = document.getElementById('orderID').value;
-            // Add your order tracking logic here
-            alert('Tracking order: ' + orderID);
-        });
-        
+        function proceedToCheckout() {
+            window.location.href = 'payments.html';
+        }
+		function trackOrder(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const orderID = document.getElementById('orderID').value;
+        const resultsDiv = document.getElementById('trackOrderResults');
+
+        // Simulate tracking request and response
+        // In a real application, you would make an AJAX request to your server
+        const trackingData = {
+            "12345": "Order is being processed.",
+            "67890": "Order has been shipped.",
+            "11121": "Order has been delivered."
+        };
+
+        // Display tracking information
+        if (trackingData[orderID]) {
+            resultsDiv.innerHTML = `<p>${trackingData[orderID]}</p>`;
+        } else {
+            resultsDiv.innerHTML = `<p>No information available for Order ID ${orderID}.</p>`;
+        }
+    }
     </script>
 </body>
 </html>
