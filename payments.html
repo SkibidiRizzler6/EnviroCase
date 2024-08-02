@@ -58,13 +58,20 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #3498db;
             position: relative;
+        }
+
+        .payment-form h3 {
+            margin-top: 0;
+            color: #2c3e50;
         }
 
         .payment-form label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
+            color: #2c3e50;
         }
 
         .payment-form input, .payment-form textarea {
@@ -111,6 +118,7 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #27ae60;
         }
 
         .order-details img {
@@ -121,10 +129,12 @@
 
         .order-details h3 {
             margin: 15px 0;
+            color: #2c3e50;
         }
 
         .order-details p {
             margin: 5px 0;
+            color: #555;
         }
 
         .success-message {
@@ -146,7 +156,7 @@
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="light_logo.jpg" alt="Light Logo">
+            <img src="light_logo.png" alt="Light Logo">
             <div class="title">EnviroCase</div>
         </div>
     </div>
@@ -178,9 +188,9 @@
 
         <div class="order-details">
             <h3>Order Details</h3>
-            <img src="box1.jpg" alt="Product Image">
+            <img src="box1.jpeg" alt="Product Image">
             <p><strong>Product:</strong> Recycled Paper Box - Small</p>
-            <p><strong>Delivery Time:</strong> 3-5 Business Days</p>
+            <p><strong>Delivery Time:</strong> <span id="deliveryTime">3-5 Business Days</span></p>
             <p><strong>Net Price:</strong> ₹50</p>
         </div>
     </div>
@@ -190,6 +200,14 @@
     </div>
 
     <script>
+        // Function to get random delivery time
+        function getRandomDeliveryTime() {
+            const deliveryTimes = ['2-4 Business Days', '3-5 Business Days', '4-6 Business Days'];
+            return deliveryTimes[Math.floor(Math.random() * deliveryTimes.length)];
+        }
+
+        document.getElementById('deliveryTime').textContent = getRandomDeliveryTime();
+
         document.getElementById('paymentForm').addEventListener('submit', function(event) {
             event.preventDefault();
             document.getElementById('spinner').style.display = 'block';
